@@ -1,10 +1,10 @@
 # CS361-MicroserviceA
 
-- This microservice is to allow clients to request random profile picture images or to-do tasks.
+This microservice can provide client-applications random profile picture images or to-do tasks.
 
 
 ## How to Request Data
-To request data/content from the microservice, the client application must make a GET request to the microservice's URL-endpoint `/content` with a query string. It must contain parameter `type=`, with values `image` or `task`. 
+To request data/content from the microservice, the client application must make a GET request to the microservice's URL-endpoint, `localhost:3000/content`, with a query string. The query string must contain parameter `type`, with values `image` or `task` depending on what content is being requested. 
 
 #### The following python test code requests a random image:
 
@@ -23,8 +23,9 @@ response = requests.get(url)
 ```
 
 ## How to Handle Response Data
-To handle the response data, the client application must be able to save the image file in a directory if the value for the parameter `type=` in the query string was `image`.
+To handle the response data, the client application must be able to save or store the requested content appropriately. 
 
+This python example code shows how to get the response content (image) and save it as "profile_picture" under '/images' as JPG:
 
 ```python
 import requests
@@ -37,7 +38,7 @@ file.write(response.content)
 file.close()
 ```
 
-This code shows how a client can handle a JSON response body containing the `task` name and its value.
+This python code shows how a client can handle tasks by saving the content (value of "task" name in the JSON response body) under a text file called "task.txt".
 
 ```python
 import requests
@@ -45,7 +46,7 @@ import requests
 url = f'http://localhost:3000/content?type=task'
 response = requests.get(url)
 
-file = open("tasks.txt", 'w') # The file path should be changed depending on where the to-do task (plain text) should be written/stored in.
+file = open("task.txt", 'w') # The file path should be changed depending on where the to-do task (plain text) should be written/stored in.
 file.write(response.json().get("task"))
 file.close()
 ```
@@ -60,25 +61,25 @@ response = requests.get(url)
 
 if response.status_code == 200:
     if type == 'task':
-        file = open("tasks.txt", 'w')
+        file = open("task.txt", 'w')
         file.write(response.json().get("task"))
         file.close()
-        print(f"Task saved to tasks.txt.")
     elif type == 'image':
         file = open("images/profile_picture.jpg", 'wb')
         file.write(response.content)
         file.close()
-        print(f"Picture image saved under /images.")
 else:
     print("Error:", response.text)
 ```
 
 ## Notes
-Latest commit has some images stored under "/images" and some (text) to-do tasks under "tasks.txt".
+Commit has images stored under "/images" and some to-do tasks under "tasks.txt".
 
-To run the server application, Flask must be installed: 
+To run the server application locally, Flask must be installed: 
 ##### `pip install flask`
-To run the client app, the "requests" library must be installed: 
+To run the test program, the "requests" library must be installed: 
 ##### `pip install requests`
 
 ## Sequence Diagram
+![Sequence diagram](https://github.com/user-attachments/assets/170f2b57-4649-4b68-9f1f-1b64c4cccab4)
+
