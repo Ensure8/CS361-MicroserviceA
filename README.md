@@ -81,5 +81,6 @@ To run the test program, the "requests" library must be installed:
 ##### `pip install requests`
 
 ## Sequence Diagram
-![Sequence diagram](https://github.com/user-attachments/assets/170f2b57-4649-4b68-9f1f-1b64c4cccab4)
+![Sequence diagram](https://github.com/user-attachments/assets/683f0eee-f632-4717-9171-9afc44ccdaba)
+
 
