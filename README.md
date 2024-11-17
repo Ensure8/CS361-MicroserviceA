@@ -22,8 +22,8 @@ url = f'http://localhost:3000/content?type=task'
 response = requests.get(url)
 ```
 
-## How to Handle Response Data
-To handle the response data, the client application must be able to save or store the requested content appropriately. 
+## How to Handle and Receive Response Data
+If a client application makes a GET request to the endpoint, a GET response will be provided by the microservice with the appropriate content. A random image will be provided or a JSON body containing the "task" key and the to-do task as the value. If the response was a task, the client should be able to parse the content of the JSON string. If the response was an image, the client application should be able to store it in an appropriate place.
 
 This python example code shows how to get the response content (image) and save it as "profile_picture" under '/images' as JPG:
 
@@ -38,7 +38,7 @@ file.write(response.content)
 file.close()
 ```
 
-This python code shows how a client can handle tasks by saving the content (value of "task" name in the JSON response body) under a text file called "task.txt".
+This python code shows how a client can handle tasks by saving the content (value of "task" key) under a text file called "task.txt".
 
 ```python
 import requests
@@ -73,7 +73,7 @@ else:
 ```
 
 ## Notes
-Commit has images stored under "/images" and some to-do tasks under "tasks.txt".
+Commit has images (from Kaggle) stored under "/images" and some to-do tasks under "tasks.txt".
 
 To run the server application locally, Flask must be installed: 
 ##### `pip install flask`
